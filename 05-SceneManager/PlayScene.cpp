@@ -62,7 +62,7 @@ void CPlayScene::_ParseSection_ANIMATIONS(string line)
 		int frame_time = atoi(tokens[i + 1].c_str());
 		ani->Add(sprite_id, frame_time);
 	}
-	DebugOut(L"[INFO] _ParseSection_ANIMATIONS--> %s\n", ToWSTR(line).c_str());
+	//DebugOut(L"[INFO] _ParseSection_ANIMATIONS--> %s\n", ToWSTR(line).c_str());
 
 	CAnimations::GetInstance()->Add(ani_id, ani);
 }
@@ -72,73 +72,103 @@ void CPlayScene::_ParseSection_ANIMATIONS(string line)
 */
 void CPlayScene::_ParseSection_OBJECTS(string line)
 {
-	vector<string> tokens = split(line);
+	DebugOut(L"\n_ParseSection_OBJECTS");
+	wstring path = ToWSTR(line);
+	_ParseObjFromFile(path.c_str());
 
-	// skip invalid lines - an object set must have at least id, x, y
-	if (tokens.size() < 2) return;
+}
+void CPlayScene::_ParseObjFromFile(LPCWSTR path)
+{
+	DebugOut(L"\nParseOBfromfile");
+	ifstream f;
+	f.open(path);
 
-	int object_type = atoi(tokens[0].c_str());
-	float x = (float)atof(tokens[1].c_str());
-	float y = (float)atof(tokens[2].c_str());
+	if (!f)
+		DebugOut(L"\nFailed to open object file!");
 
-	CGameObject* obj = NULL;
+	char str[MAX_SCENE_LINE];
 
-	switch (object_type)
+	while (f.getline(str, MAX_SCENE_LINE))
 	{
-	case OBJECT_TYPE_MARIO:
-		if (player != NULL)
+		string line(str);
+
+		vector<string> tokens = split(line);
+
+		if (line[0] == '#') continue;
+
+		// skip invalid lines - an object set must have at least id, x, y
+		if (tokens.size() < 3) continue; // skip invalid lines - an object set must have at least id, x, y
+
+		int object_type = atoi(tokens[0].c_str());
+		DebugOut(L"[ERROR] Obt: %d\n", object_type);
+		float x = (float)atof(tokens[1].c_str());
+		float y = (float)atof(tokens[2].c_str());
+
+
+		CGameObject* obj = NULL;
+
+		switch (object_type)
 		{
-			DebugOut(L"[ERROR] MARIO object was created before!\n");
+
+		case OBJECT_TYPE_MARIO:
+			if (player != NULL)
+			{
+				DebugOut(L"[ERROR] MARIO object was created before!\n");
+				return;
+			}
+			obj = new CMario(x, y);
+			player = (CMario*)obj;
+
+			DebugOut(L"[INFO] Player object has been created!\n");
+			break;
+		case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x, y); break;
+		case OBJECT_TYPE_BRICK: obj = new CBrick(x, y); break;
+		case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
+
+		case OBJECT_TYPE_PLATFORM:
+		{
+
+			float cell_width = (float)atof(tokens[3].c_str());
+			float cell_height = (float)atof(tokens[4].c_str());
+			int length = atoi(tokens[5].c_str());
+			int sprite_begin = atoi(tokens[6].c_str());
+			int sprite_middle = atoi(tokens[7].c_str());
+			int sprite_end = atoi(tokens[8].c_str());
+
+			obj = new CPlatform(
+				x, y,
+				cell_width, cell_height, length,
+				sprite_begin, sprite_middle, sprite_end
+			);
+
+			break;
+		}
+
+		case OBJECT_TYPE_PORTAL:
+		{
+			float r = (float)atof(tokens[3].c_str());
+			float b = (float)atof(tokens[4].c_str());
+			int scene_id = atoi(tokens[5].c_str());
+			obj = new CPortal(x, y, r, b, scene_id);
+		}
+		break;
+
+
+		default:
+			DebugOut(L"[ERROR] Invalid object type: %d\n", object_type);
 			return;
 		}
-		obj = new CMario(x, y);
-		player = (CMario*)obj;
 
-		DebugOut(L"[INFO] Player object has been created!\n");
-		break;
-	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x, y); break;
-	case OBJECT_TYPE_BRICK: obj = new CBrick(x, y); break;
-	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
+		// General object setup
+		obj->SetPosition(x, y);
 
-	case OBJECT_TYPE_PLATFORM:
-	{
 
-		float cell_width = (float)atof(tokens[3].c_str());
-		float cell_height = (float)atof(tokens[4].c_str());
-		int length = atoi(tokens[5].c_str());
-		int sprite_begin = atoi(tokens[6].c_str());
-		int sprite_middle = atoi(tokens[7].c_str());
-		int sprite_end = atoi(tokens[8].c_str());
-
-		obj = new CPlatform(
-			x, y,
-			cell_width, cell_height, length,
-			sprite_begin, sprite_middle, sprite_end
-		);
-
-		break;
+		objects.push_back(obj);
 	}
 
-	case OBJECT_TYPE_PORTAL:
-	{
-		float r = (float)atof(tokens[3].c_str());
-		float b = (float)atof(tokens[4].c_str());
-		int scene_id = atoi(tokens[5].c_str());
-		obj = new CPortal(x, y, r, b, scene_id);
-	}
-	break;
+	f.close();
 
-
-	default:
-		DebugOut(L"[ERROR] Invalid object type: %d\n", object_type);
-		return;
-	}
-
-	// General object setup
-	obj->SetPosition(x, y);
-
-
-	objects.push_back(obj);
+	DebugOut(L"[INFO] Done loading object  %s\n", path);
 }
 
 
