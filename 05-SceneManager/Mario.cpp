@@ -31,10 +31,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CMario::OnNoCollision(DWORD dt)
 {
-	//x += vx * dt;
-	//y += vy * dt;
-	x = 16;
-	y = 16;
+	x += vx * dt;
+	y += vy * dt;
+	/*x = 16;
+	y = 16;*/
 }
 
 void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
