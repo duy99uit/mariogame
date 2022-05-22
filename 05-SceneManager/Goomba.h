@@ -20,13 +20,13 @@
 class CGoomba : public CGameObject
 {
 protected:
-	float ax;				
-	float ay; 
+	float ax;
+	float ay;
 
 	ULONGLONG die_start;
 
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects);
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	virtual void Render();
 
 	virtual int IsCollidable() { return 1; };
@@ -35,7 +35,7 @@ protected:
 
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
-public: 	
+public:
 	CGoomba(float x, float y);
 	virtual void SetState(int state);
 };

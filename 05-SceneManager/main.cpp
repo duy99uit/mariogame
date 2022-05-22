@@ -1,3 +1,5 @@
+
+
 #include <windows.h>
 #include <d3d10.h>
 #include <d3dx10.h>
@@ -13,20 +15,18 @@
 #include "Brick.h"
 #include "Goomba.h"
 #include "Coin.h"
-#include "Platform.h"
 
 #include "SampleKeyEventHandler.h"
 
 #include "AssetIDs.h"
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
-#define MAIN_WINDOW_TITLE L"04 - Collision"
+#define MAIN_WINDOW_TITLE L"MARIO-DX10"
 #define WINDOW_ICON_PATH L"mario.ico"
 
-#define BACKGROUND_COLOR D3DXCOLOR(200.0f/255, 200.0f/255, 255.0f/255, 0.0f)
-
-#define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
+#define BACKGROUND_COLOR D3DXCOLOR(0, 0, 0, 1.0f)
+#define SCREEN_WIDTH 272
+#define SCREEN_HEIGHT 256
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -51,7 +51,7 @@ void Update(DWORD dt)
 }
 
 /*
-	Render a frame 
+	Render a frame
 */
 void Render()
 {
@@ -109,7 +109,7 @@ HWND CreateGameWindow(HINSTANCE hInstance, int nCmdShow, int ScreenWidth, int Sc
 			hInstance,
 			NULL);
 
-	if (!hWnd) 
+	if (!hWnd)
 	{
 		OutputDebugString(L"[ERROR] CreateWindow failed");
 		DWORD ErrCode = GetLastError();
@@ -149,14 +149,14 @@ int Run()
 		{
 			frameStart = now;
 
-			CGame::GetInstance()->ProcessKeyboard();			
+			CGame::GetInstance()->ProcessKeyboard();
 			Update(dt);
 			Render();
 
-			CGame::GetInstance()->SwitchScene(1);
+			CGame::GetInstance()->SwitchScene();
 		}
 		else
-			Sleep(tickPerFrame - dt);	
+			Sleep(tickPerFrame - dt);
 	}
 
 	return 1;
@@ -176,10 +176,11 @@ int WINAPI WinMain(
 	game->Init(hWnd, hInstance);
 	game->InitKeyboard();
 
-	//IMPORTANT: this is the only place where a hardcoded file name is allowed ! 
-	game->Load(L"Resources\\Scene\\mario-sample.txt");  
 
-	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH*2, SCREEN_HEIGHT*2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	//IMPORTANT: this is the only place where a hardcoded file name is allowed ! 
+	game->Load(L"Resources\\Scene\\mario-sample.txt");
+
+	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 	Run();
 

@@ -1,6 +1,9 @@
+
 #pragma once
+#include <d3dx10.h>
 
 #include "KeyEventHandler.h"
+
 #define	INTROSCENE	0
 #define	WORLDSCENE	1
 #define	PLAYSCENE	2
@@ -20,38 +23,41 @@
 class CScene
 {
 protected:
-	CKeyEventHandler* key_handler;
+	LPKEYEVENTHANDLER key_handler;
 	int id;
 	bool isCameraAutoMove = false;
 	LPCWSTR sceneFilePath;
-	//CFont* fonts = NULL;
 
-public: 
+public:
 	CScene(int id, LPCWSTR filePath)
 	{
 		this->id = id;
 		this->sceneFilePath = filePath;
+		this->key_handler = NULL;
 	}
 	bool isUnLoaded = false;
-	CKeyEventHandler* GetKeyEventHandler() { return key_handler; }
+
 	int GetId() { return id; }
 	void SetCamerAutoMove(bool l) { this->isCameraAutoMove = l; }
+
+	LPKEYEVENTHANDLER GetKeyEventHandler() { return key_handler; }
 	virtual void Load() = 0;
 	virtual void Unload() = 0;
 	virtual void Update(DWORD dt) = 0;
 	virtual void Render() = 0;
-	//CFont* GetFont() { return fonts; }
 };
-typedef CScene * LPSCENE;
+typedef CScene* LPSCENE;
+
 
 class CSceneKeyHandler : public CKeyEventHandler
 {
 protected:
-	CScene* scene;
+	CScene* scence;
 
 public:
 	virtual void KeyState(BYTE* states) = 0;
 	virtual void OnKeyDown(int KeyCode) = 0;
 	virtual void OnKeyUp(int KeyCode) = 0;
-	CSceneKeyHandler(CScene* s) :CKeyEventHandler() { scene = s; }
+	CSceneKeyHandler(LPSCENE s) :CKeyEventHandler() { scence = s; }
 };
+
