@@ -197,23 +197,17 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			}
 			obj = new CMario(x, y);
 			player = (CMario*)obj;
-			DebugOut(L"[INFO] Player object created!\n", obj);
+			DebugOut(L"[INFO] Mario object created!\n", obj);
 			break;
 		case OBJECT_TYPE_GOOMBA:
-			obj = new CGoomba(x, y);
+			/*obj = new CGoomba(x, y);*/
+			obj = new CBrick();
+			DebugOut(L"[INFO] Goomba object created!\n", obj);
 			break;
 		case OBJECT_TYPE_BRICK:
 			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_QUESTIONBRICK:
-			obj = new CBrick();
-
-			break;
-		case OBJECT_TYPE_BREAKABLEBRICK:
-			obj = new CBrick();
-
-			break;
-		case OBJECT_TYPE_MUSICALBRICK:
 			obj = new CBrick();
 
 			break;
@@ -232,11 +226,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 			break;
 		}
-		case GRID:
-		{
-			obj = new CBrick();
-			break;
-		}
+		
 		default:
 			DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 			return;
