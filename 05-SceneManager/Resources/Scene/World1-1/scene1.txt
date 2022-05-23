@@ -266,6 +266,7 @@ Resources\Tilemap\world1-1.txt
 11211	553	49	569	75	100
 #jump down left
 11212	591	49	607	75	100
+11213	125	154	140	181	100
 #brake left
 11317	572	47	588	75	100
 #sit left
