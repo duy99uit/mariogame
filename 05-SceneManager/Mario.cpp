@@ -21,7 +21,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		LPGAMEOBJECT obj = coObjects->at(i);
 		if (dynamic_cast<CBlock*>(obj))
 		{
-			if (obj->getY() < this->y) {
+			if (obj->getY() - 16 < this->y) {
 				obj->SetIsBlocking(0);
 			}
 			else {
