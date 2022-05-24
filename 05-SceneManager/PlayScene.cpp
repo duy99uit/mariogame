@@ -203,6 +203,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_GOOMBA:
 			obj = new CGoomba(tag);
+			obj->SetTagType(tag);
 			//DebugOut(L"[INFO] Goomba object created!\n", obj);
 			break;
 		case OBJECT_TYPE_KOOPAS:

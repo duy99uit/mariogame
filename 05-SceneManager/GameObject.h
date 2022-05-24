@@ -41,6 +41,7 @@ public:
 
 	int GetState() { return this->state; }
 	int tagType = 0;
+	void SetTagType(int tagType) { this->tagType = tagType; }
 	virtual void Delete() { isDeleted = true; }
 	bool IsDeleted() { return isDeleted; }
 
