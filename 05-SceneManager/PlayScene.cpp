@@ -9,6 +9,8 @@
 #include "Portal.h"
 #include "Coin.h"
 
+#include "Block.h"
+
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
@@ -211,11 +213,9 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_QUESTIONBRICK:
 			obj = new CBrick();
-
 			break;
 		case OBJECT_TYPE_BLOCK:
-			obj = new CBrick();
-
+			obj = new CBlock(x, y);
 			break;
 		case OBJECT_TYPE_COIN:
 			obj = new CCoin(x, y);
@@ -224,11 +224,8 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_PORTAL:
-		{
 			obj = new CBrick();
 			break;
-		}
-		
 		default:
 			DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
 			return;
