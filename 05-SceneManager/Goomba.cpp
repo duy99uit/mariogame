@@ -138,7 +138,7 @@ void CGoomba::Render()
 	}
 	
 
-	animation_set->at(ani)->Render(x, y);
+	animation_set->at(ani)->Render(x, y - 8);
 	RenderBoundingBox();
 }
 
