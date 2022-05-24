@@ -201,7 +201,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_GOOMBA:
 			obj = new CGoomba(x, y);
-			DebugOut(L"[INFO] Goomba object created!\n", obj);
+			//DebugOut(L"[INFO] Goomba object created!\n", obj);
 			break;
 		case OBJECT_TYPE_KOOPAS:
 			obj = new CBrick();
