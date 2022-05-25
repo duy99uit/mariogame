@@ -13,6 +13,8 @@
 
 #include "SampleKeyEventHandler.h"
 
+#include "QuestionBrick.h"
+
 using namespace std;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
@@ -213,7 +215,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			obj = new CBrick();
 			break;
 		case OBJECT_TYPE_QUESTIONBRICK:
-			obj = new CBrick();
+			obj = new QuestionBrick(option_tag_1);
 			break;
 		case OBJECT_TYPE_BLOCK:
 			obj = new CBlock(x, y);
