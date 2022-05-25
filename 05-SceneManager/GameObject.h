@@ -40,7 +40,11 @@ public:
 	void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; }
 
 	int GetState() { return this->state; }
+
 	int tagType = 0;
+	bool isBeingPushedUp = false;
+	bool isFallingDown = false;
+
 	void SetTagType(int tagType) { this->tagType = tagType; }
 	virtual void Delete() { isDeleted = true; }
 	bool IsDeleted() { return isDeleted; }
