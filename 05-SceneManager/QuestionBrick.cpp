@@ -48,6 +48,7 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	x += vx * dt;
 	y += vy * dt;
+
 }
 
 void QuestionBrick::GetBoundingBox(float& l, float& t, float& r, float& b) {
@@ -71,14 +72,14 @@ void QuestionBrick::SetState(int state) {
 }
 
 void QuestionBrick::startPushedUp() {
-	isBeingPushedUp = true;
+	isPushingUp = true;
 	vy = -QUESTIONBRICK_SPEED;
-	DebugOut(L"QuestionBrick startPushedUp");
+	/*DebugOut(L"QuestionBrick startPushedUp");*/
 }
 
 void QuestionBrick::stopPushedUp() {
-	isBeingPushedUp = false;
+	isPushingUp = false;
 	isFallingDown = true;
 	vy = QUESTIONBRICK_SPEED;
-	DebugOut(L"QuestionBrick stopPushedUp");
+	/*DebugOut(L"QuestionBrick stopPushedUp");*/
 }

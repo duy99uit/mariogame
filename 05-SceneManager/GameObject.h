@@ -42,7 +42,7 @@ public:
 	int GetState() { return this->state; }
 
 	int tagType = 0;
-	bool isBeingPushedUp = false;
+	bool isPushingUp = false;
 	bool isFallingDown = false;
 
 	void SetTagType(int tagType) { this->tagType = tagType; }
