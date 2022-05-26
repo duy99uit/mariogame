@@ -43,6 +43,20 @@ void QuestionBrick::OnCollisionWith(LPCOLLISIONEVENT e)
 	}
 }
 
+CGameObject* QuestionBrick::HandleQRItem(int itemType) {
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	CMario* mario = currentScene->GetPlayer();
+	int ani_set_id = -1;
+	CAnimationSets* animation_sets = CAnimationSets::GetInstance();
+	if (itemType == COIN_ITEM_QUESTION_BRICK_COIN) {
+		obj = new CCoin(COIN_TYPE_QUESTION_BRICK);
+		ani_set_id = COIN_ITEM_QUESTION_BRICK_ANI_SET_ID;
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+		obj->SetAnimationSet(ani_set);
+	}
+	return obj;
+}
+
 void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	CGameObject::Update(dt);
 

@@ -10,6 +10,9 @@
 #define QUESTIONBRICK_SPEED		0.05f
 #define QUESTIONBRICK_PUSH_MAX_HEIGHT 8
 
+#define COIN_ITEM_QUESTION_BRICK_COIN	0
+#define COIN_ITEM_QUESTION_BRICK_ANI_SET_ID 6
+
 
 
 class QuestionBrick :public CGameObject
@@ -30,6 +33,8 @@ public:
 	virtual void OnNoCollision(DWORD dt);
 
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
+
+	CGameObject* HandleQRItem(int itemType);
 
 	void SetState(int state);
 
