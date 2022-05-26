@@ -49,6 +49,17 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	x += vx * dt;
 	y += vy * dt;
 
+	if (state == QUESTION_BRICK_HIT) {
+		if (isPushingUp && ((start_y - y) >= QUESTIONBRICK_PUSH_MAX_HEIGHT)) {
+			stopPushedUp();
+		}
+		if (isFallingDown && y >= start_y) {
+			y = start_y;
+			isFallingDown = false;
+			vy = 0;
+		}
+	}
+
 }
 
 void QuestionBrick::GetBoundingBox(float& l, float& t, float& r, float& b) {
