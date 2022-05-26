@@ -35,6 +35,7 @@ public:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	CGameObject* HandleQRItem(int itemType);
+	void HandleShowItem(int itemType = COIN_ITEM_QUESTION_BRICK_COIN);
 
 	void SetState(int state);
 

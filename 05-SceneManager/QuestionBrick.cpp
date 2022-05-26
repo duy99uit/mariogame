@@ -57,6 +57,21 @@ CGameObject* QuestionBrick::HandleQRItem(int itemType) {
 	return obj;
 }
 
+void QuestionBrick::HandleShowItem(int itemType) {
+	this->obj = HandleQRItem(itemType);
+	if (this->obj == NULL) {
+		return;
+	}
+	CPlayScene* currentScene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	if (dynamic_cast<CCoin*>(this->obj)) {
+		CCoin* obj = dynamic_cast<CCoin*>(this->obj);
+		obj->SetAppear(true);
+		obj->SetPosition(x, y - COIN_BBOX_HEIGHT - 1);
+		currentScene->AddObjectToScene(obj);
+		DebugOut(L"QuestionBrick Coin create \n");
+	}
+}
+
 void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	CGameObject::Update(dt);
 
@@ -71,6 +86,10 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			y = start_y;
 			isFallingDown = false;
 			vy = 0;
+		}
+		if (tagType == COIN_ITEM_QUESTION_BRICK_COIN) {
+			DebugOut(L"Start coin \n");
+			HandleShowItem(tagType);
 		}
 	}
 
