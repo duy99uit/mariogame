@@ -14,10 +14,14 @@
 #define COIN_ITEM_QUESTION_BRICK_ANI_SET_ID 6
 
 
-
 class QuestionBrick :public CGameObject
 {
 	int tagType;
+
+	bool isPushingUp = false;
+	bool isFallingDown = false;
+
+	int totalItems = 1;
 
 public:
 	CGameObject* obj = NULL;
