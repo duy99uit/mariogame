@@ -2,7 +2,7 @@
 #include "GameObject.h"
 
 #define MUSHROOM_GRAVITY	0.2f
-#define MUSHROOM_SPEED	0.08f
+#define MUSHROOM_SPEED	0.07f
 
 #define MUSHROOM_BBOX_WIDTH	16
 #define MUSHROOM_BBOX_HEIGHT 16
@@ -37,6 +37,9 @@ public:
 
 	virtual int IsAllowCollision() { return 1; };
 	virtual int IsBlocking() { return 0; }
+
+	virtual void OnNoCollision(DWORD dt);
+	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	CMushroom(int type = 0);
 	~CMushroom();

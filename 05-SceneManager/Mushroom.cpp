@@ -23,11 +23,12 @@ void CMushroom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		if (start_y - y >= MUSHROOM_BBOX_HEIGHT)
 		{
 			vy = 0;
+			DebugOut(L"start_y! %d\n", start_y);
 			y = start_y - MUSHROOM_BBOX_HEIGHT - 0.1f;
 
 			//mushroom move right 
 			SetState(MUSHROOM_STATE_RIGHT);
-			/*DebugOut(L"Mushroom state right running!\n");*/
+			DebugOut(L"Mushroom state right running!\n");
 			
 		}
 	}
@@ -50,7 +51,31 @@ void CMushroom::SetState(int state) {
 	case MUSHROOM_STATE_RIGHT:
 		vy = MUSHROOM_GRAVITY;
 		vx = MUSHROOM_SPEED;
-		DebugOut(L"Vao day \n", vy, vx);
+		DebugOut(L"Vao day %d\n", vx);
 		break;
+	}
+}
+
+void CMushroom::OnNoCollision(DWORD dt) {
+	// mushroom fall when over brick, block
+	if (state == MUSHROOM_STATE_RIGHT) {
+		x += vx * dt;
+		y += vy * dt;
+		vy = MUSHROOM_GRAVITY;
+	}
+}
+
+void CMushroom::OnCollisionWith(LPCOLLISIONEVENT e)
+{
+	if (state == MUSHROOM_STATE_RIGHT) {
+		if (e->ny != 0 && e->obj->IsBlocking())
+			vy = 0;
+	
+		else
+		{
+			if (e->nx != 0 && e->obj->IsBlocking())
+				vx = -vx;
+			
+		}
 	}
 }
