@@ -61,7 +61,7 @@ CGameObject* QuestionBrick::HandleQRItem(int itemType) {
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 		obj->SetAnimationSet(ani_set);
 	}
-	if (itemType == ITEM_MUSHROOM) {
+	if (itemType == MUSHROOM_ITEM_QUESTION_BRICK) {
 		obj = new CMushRoom();
 		ani_set_id = ITEM_MUSHROOM_ANI_SET_ID;
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
@@ -84,6 +84,14 @@ void QuestionBrick::HandleShowItem(int itemType) {
 		currentScene->AddObjectToScene(obj);
 		DebugOut(L"QuestionBrick Coin create \n");
 	}
+	if (dynamic_cast<CMushRoom*>(this->obj)) {
+		CMushRoom* obj = dynamic_cast<CMushRoom*>(this->obj);
+		obj->SetAppear(true);
+		obj->SetPosition(x, y);
+		obj->SetState(MUSHROOM_STATE_IDLE);
+		currentScene->AddObjectToScene(obj);
+		DebugOut(L"QuestionBrick Mushroom create \n");
+	}
 }
 
 void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
@@ -103,6 +111,10 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		}
 		if (tagType == COIN_ITEM_QUESTION_BRICK_COIN) {
 			/*DebugOut(L"Start coin \n");*/
+			HandleShowItem(tagType);
+		}
+		// case update QR - Mushroom
+		if (tagType == MUSHROOM_ITEM_QUESTION_BRICK) {
 			HandleShowItem(tagType);
 		}
 	}
