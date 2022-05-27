@@ -15,15 +15,32 @@ void CMushRoom::Render() {
 void CMushRoom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	if (isDeleted) return;
 
+	if (state == MUSHROOM_STATE_UP)
+	{
+		y += vy * dt;
+		if (start_y - y >= MUSHROOM_BBOX_HEIGHT)
+		{
+			vy = 0;
+			y = start_y - MUSHROOM_BBOX_HEIGHT - 0.1f;
+		}
+	}
+
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
 void CMushRoom::SetState(int state) {
+
+	CGameObject::SetState(state);
+
 	switch (state)
 	{
-	case MUSHROOM_STATE_IDLE:
-		vy = vx = 0;
-		break;
+		case MUSHROOM_STATE_IDLE:
+			vy = vx = 0;
+			break;
+		case MUSHROOM_STATE_UP:
+			vy = -0.05f;
+			start_y = y;
+			break;
 	}
 }

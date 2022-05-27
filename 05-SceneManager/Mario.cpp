@@ -13,6 +13,7 @@
 #include "Collision.h"
 
 #include "QuestionBrick.h"
+#include "Mushroom.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
@@ -79,9 +80,13 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	else if (dynamic_cast<CPortal*>(e->obj))
 		OnCollisionWithPortal(e);
 	else if (dynamic_cast<QuestionBrick*>(e->obj)) {
-		DebugOut(L"collionsion with QuestionBrick!\n");
 		OnCollisionWithQuestionBrick(e);
 	}
+	else if (dynamic_cast<CMushRoom*>(e->obj))
+	{
+		OnCollisionWithMushRoom(e);
+	}
+		
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -143,6 +148,11 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 		vy = 0;
 		questionBrick->SetState(QUESTION_BRICK_HIT);
 	}
+}
+
+void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
+{
+	DebugOut(L"Mario OnCollisionWithMushRoom!\n");
 }
 
 //

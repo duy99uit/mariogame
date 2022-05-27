@@ -88,7 +88,7 @@ void QuestionBrick::HandleShowItem(int itemType) {
 		CMushRoom* obj = dynamic_cast<CMushRoom*>(this->obj);
 		obj->SetAppear(true);
 		obj->SetPosition(x, y);
-		obj->SetState(MUSHROOM_STATE_IDLE);
+		obj->SetState(MUSHROOM_STATE_UP);
 		currentScene->AddObjectToScene(obj);
 		DebugOut(L"QuestionBrick Mushroom create \n");
 	}
