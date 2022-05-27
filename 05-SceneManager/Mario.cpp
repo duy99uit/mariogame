@@ -152,7 +152,9 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 {
-	DebugOut(L"Mario OnCollisionWithMushRoom!\n");
+	/*DebugOut(L"Mario OnCollisionWithMushRoom!\n");*/
+	e->obj->Delete();
+	SetLevel(MARIO_LEVEL_BIG);
 }
 
 //
