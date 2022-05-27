@@ -10,8 +10,13 @@
 #define QUESTIONBRICK_SPEED		0.05f
 #define QUESTIONBRICK_PUSH_MAX_HEIGHT 8
 
+// coin
 #define COIN_ITEM_QUESTION_BRICK_COIN	0
 #define COIN_ITEM_QUESTION_BRICK_ANI_SET_ID 6
+
+//mushroom
+#define ITEM_MUSHROOM	1
+#define ITEM_MUSHROOM_ANI_SET_ID 37
 
 
 class QuestionBrick :public CGameObject
@@ -38,7 +43,7 @@ public:
 
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
-	CGameObject* HandleQRItem(int itemType);
+	CGameObject* HandleQRItem(int itemType); // handle item in QR, include coin/mushroom
 	void HandleShowItem(int itemType = COIN_ITEM_QUESTION_BRICK_COIN);
 
 	void SetState(int state);

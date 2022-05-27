@@ -109,6 +109,9 @@
     <ClCompile Include="QuestionBrick.cpp">
       <Filter>Map Objects\Bricks</Filter>
     </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Map Objects\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h">
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="QuestionBrick.h">
       <Filter>Map Objects\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>Map Objects\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
