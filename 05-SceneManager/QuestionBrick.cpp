@@ -108,15 +108,17 @@ void QuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			y = start_y;
 			isFallingDown = false;
 			vy = 0;
+
+			// case update QR - Mushroom
+			if (tagType == MUSHROOM_ITEM_QUESTION_BRICK) {
+				HandleShowItem(tagType);
+			}
 		}
 		if (tagType == COIN_ITEM_QUESTION_BRICK_COIN) {
 			/*DebugOut(L"Start coin \n");*/
 			HandleShowItem(tagType);
 		}
-		// case update QR - Mushroom
-		if (tagType == MUSHROOM_ITEM_QUESTION_BRICK) {
-			HandleShowItem(tagType);
-		}
+		
 	}
 
 }
