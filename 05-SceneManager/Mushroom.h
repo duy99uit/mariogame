@@ -1,17 +1,21 @@
 #pragma once
 #include "GameObject.h"
 
-#define MUSHROOM_BBOX_WIDTH 16
+#define MUSHROOM_GRAVITY	0.2f
+#define MUSHROOM_SPEED	0.08f
+
+#define MUSHROOM_BBOX_WIDTH	16
 #define MUSHROOM_BBOX_HEIGHT 16
 
 //state
 #define MUSHROOM_STATE_IDLE	0
 #define MUSHROOM_STATE_UP 6
+#define MUSHROOM_STATE_RIGHT 1
 
-class CMushRoom :public CGameObject
+class CMushroom :public CGameObject
 {
 	bool isAppear;
-	int typeMushRoom;
+	int typeMushroom;
 public:
 	virtual void Render();
 
@@ -28,11 +32,12 @@ public:
 	}
 	bool GetAppear() { return isAppear; }
 
+
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 
 	virtual int IsAllowCollision() { return 1; };
 	virtual int IsBlocking() { return 0; }
 
-	CMushRoom(int type = 0);
-	~CMushRoom();
+	CMushroom(int type = 0);
+	~CMushroom();
 };

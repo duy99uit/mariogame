@@ -1,18 +1,20 @@
 #include "MushRoom.h"
+#include "debug.h"
 
-CMushRoom::CMushRoom(int type) {
+
+CMushroom::CMushroom(int type) {
 	SetAppear(false);
-	typeMushRoom = type;
+	typeMushroom = type;
 }
 
-void CMushRoom::Render() {
+void CMushroom::Render() {
 	if (isAppear && !isDeleted) {
 		animation_set->at(0)->Render(x, y);
 	}
 	RenderBoundingBox();
 }
 
-void CMushRoom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
+void CMushroom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	if (isDeleted) return;
 
 	if (state == MUSHROOM_STATE_UP)
@@ -22,6 +24,11 @@ void CMushRoom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 		{
 			vy = 0;
 			y = start_y - MUSHROOM_BBOX_HEIGHT - 0.1f;
+
+			//mushroom move right 
+			SetState(MUSHROOM_STATE_RIGHT);
+			/*DebugOut(L"Mushroom state right running!\n");*/
+			
 		}
 	}
 
@@ -29,18 +36,21 @@ void CMushRoom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
-void CMushRoom::SetState(int state) {
-
+void CMushroom::SetState(int state) {
 	CGameObject::SetState(state);
-
 	switch (state)
 	{
-		case MUSHROOM_STATE_IDLE:
-			vy = vx = 0;
-			break;
-		case MUSHROOM_STATE_UP:
-			vy = -0.05f;
-			start_y = y;
-			break;
+	case MUSHROOM_STATE_IDLE:
+		vy = vx = 0;
+		break;
+	case MUSHROOM_STATE_UP:
+		vy = -0.05f;
+		start_y = y;
+		break;
+	case MUSHROOM_STATE_RIGHT:
+		vy = MUSHROOM_GRAVITY;
+		vx = MUSHROOM_SPEED;
+		DebugOut(L"Vao day \n", vy, vx);
+		break;
 	}
 }

@@ -82,9 +82,9 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	else if (dynamic_cast<QuestionBrick*>(e->obj)) {
 		OnCollisionWithQuestionBrick(e);
 	}
-	else if (dynamic_cast<CMushRoom*>(e->obj))
+	else if (dynamic_cast<CMushroom*>(e->obj))
 	{
-		OnCollisionWithMushRoom(e);
+		OnCollisionWithMushroom(e);
 	}
 		
 }
@@ -150,7 +150,7 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 	}
 }
 
-void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
+void CMario::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 {
 	/*DebugOut(L"Mario OnCollisionWithMushRoom!\n");*/
 	e->obj->Delete();

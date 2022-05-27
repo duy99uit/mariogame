@@ -3,7 +3,7 @@
 #include "PlayScene.h"
 #include "Game.h"
 #include "Mario.h"
-#include "MushRoom.h"
+#include "Mushroom.h"
 
 QuestionBrick::QuestionBrick(int tagType) : CGameObject() {
 	state = QUESTION_BRICK_NORMAL;
@@ -62,7 +62,7 @@ CGameObject* QuestionBrick::HandleQRItem(int itemType) {
 		obj->SetAnimationSet(ani_set);
 	}
 	if (itemType == MUSHROOM_ITEM_QUESTION_BRICK) {
-		obj = new CMushRoom();
+		obj = new CMushroom();
 		ani_set_id = ITEM_MUSHROOM_ANI_SET_ID;
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 		obj->SetAnimationSet(ani_set);
@@ -84,8 +84,8 @@ void QuestionBrick::HandleShowItem(int itemType) {
 		currentScene->AddObjectToScene(obj);
 		DebugOut(L"QuestionBrick Coin create \n");
 	}
-	if (dynamic_cast<CMushRoom*>(this->obj)) {
-		CMushRoom* obj = dynamic_cast<CMushRoom*>(this->obj);
+	if (dynamic_cast<CMushroom*>(this->obj)) {
+		CMushroom* obj = dynamic_cast<CMushroom*>(this->obj);
 		obj->SetAppear(true);
 		obj->SetPosition(x, y);
 		obj->SetState(MUSHROOM_STATE_UP);
