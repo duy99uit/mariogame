@@ -14,6 +14,7 @@
 #include "SampleKeyEventHandler.h"
 
 #include "QuestionBrick.h"
+#include "PiranhaPlant.h"
 
 using namespace std;
 
@@ -210,6 +211,10 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_KOOPAS:
 			obj = new CBrick();
+			break;
+		case OBJECT_TYPE_PIRANHAPLANT:
+			obj = new PiranhaPlant();
+			DebugOut(L"[INFO] PiranhaPlant was create \n", obj);
 			break;
 		case OBJECT_TYPE_BRICK:
 			obj = new CBrick();
