@@ -55,7 +55,8 @@ protected:
 
 	ULONGLONG die_start;
 	ULONGLONG chasingTimer;
-	ULONGLONG walkingTimer;
+	ULONGLONG walkingTimer = 0;
+
 
 	int jumpingStacks = 0;
 

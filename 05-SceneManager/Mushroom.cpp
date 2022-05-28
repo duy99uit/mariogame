@@ -57,7 +57,6 @@ void CMushroom::SetState(int state) {
 }
 
 void CMushroom::OnNoCollision(DWORD dt) {
-	// mushroom fall when over brick, block
 	if (state == MUSHROOM_STATE_RIGHT) {
 		x += vx * dt;
 		y += vy * dt;

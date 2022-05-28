@@ -95,10 +95,9 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	{
 		if (GetTickCount64() - walkingTimer >= GOOMBA_RED_TIME_WALKING && walkingTimer)
 		{
-			walkingTimer = GetTickCount64();
 			jumpingStacks = -1;
 			y -= GOOMBA_RED_BBOX_WINGS_HEIGHT - GOOMBA_RED_BBOX_HEIGHT + 10;
-			SetState(GOOMBA_STATE_RED_JUMPING);
+			
 		}
 	}
 
@@ -162,7 +161,6 @@ void CGoomba::SetState(int state)
 		vx = -GOOMBA_WALKING_SPEED;
 		break;
 	case GOOMBA_STATE_RED_WINGSWALKING:
-		walkingTimer = GetTickCount64();
 		ay = GOOMBA_GRAVITY;
 		break;
 	case GOOMBA_STATE_RED_JUMPING:
