@@ -119,7 +119,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 				else
 				{
 					DebugOut(L"Mario DIE \n");
-					SetState(MARIO_STATE_DIE);
+					/*SetState(MARIO_STATE_DIE);*/
 				}
 			}
 		}
@@ -152,7 +152,7 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithMushroom(LPCOLLISIONEVENT e)
 {
-	/*DebugOut(L"Mario OnCollisionWithMushRoom!\n");*/
+	DebugOut(L"Mario OnCollisionWithMushRoom - change state - big!\n");
 	e->obj->Delete();
 	SetLevel(MARIO_LEVEL_BIG);
 }

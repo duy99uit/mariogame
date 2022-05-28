@@ -65,5 +65,8 @@ void CCoin::SetState(int state) {
 			vy = -COIN_SPEED;
 			StartTiming();
 			break;
+		case COIN_STATE_DOWN:
+			vy = COIN_SPEED;
+			break;
 	}
 }

@@ -43,7 +43,8 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 		if (e->ny != 0)
 		{
 			vy = 0;
-			if (e->ny < 0 && tagType == GOOMBA_RED && state != GOOMBA_STATE_DIE) // check with goomba red fall, not die
+			// goomba red fall, not die
+			if (e->ny < 0 && tagType == GOOMBA_RED && state != GOOMBA_STATE_DIE)
 			{
 				if (!walkingTimer) // jumping
 				{
