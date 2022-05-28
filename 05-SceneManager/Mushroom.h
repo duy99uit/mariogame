@@ -11,6 +11,7 @@
 #define MUSHROOM_STATE_IDLE	0
 #define MUSHROOM_STATE_UP 6
 #define MUSHROOM_STATE_RIGHT 1
+#define MUSHROOM_STATE_LEFT	-1
 
 class CMushroom :public CGameObject
 {
@@ -35,7 +36,7 @@ public:
 
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 
-	virtual int IsAllowCollision() { return 1; };
+	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; }
 
 	virtual void OnNoCollision(DWORD dt);

@@ -29,7 +29,10 @@ void CMushroom::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 			//mushroom move right 
 			SetState(MUSHROOM_STATE_RIGHT);
 			DebugOut(L"Mushroom state right running!\n");
-			
+
+			////mushroom move left  
+			//SetState(MUSHROOM_STATE_LEFT);
+			//DebugOut(L"Mushroom state right running!\n");
 		}
 	}
 
@@ -53,12 +56,21 @@ void CMushroom::SetState(int state) {
 		vx = MUSHROOM_SPEED;
 		DebugOut(L"Vao day %d\n", vx);
 		break;
+	case MUSHROOM_STATE_LEFT:
+		vy = MUSHROOM_GRAVITY;
+		vx = -MUSHROOM_SPEED;
+		break;
 	}
 }
 
 void CMushroom::OnNoCollision(DWORD dt) {
 	if (state == MUSHROOM_STATE_RIGHT) {
 		x += vx * dt;
+		y += vy * dt;
+		vy = MUSHROOM_GRAVITY;
+	}
+	if (state == MUSHROOM_STATE_LEFT) {
+		x += -vx * dt;
 		y += vy * dt;
 		vy = MUSHROOM_GRAVITY;
 	}
