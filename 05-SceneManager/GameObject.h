@@ -34,6 +34,7 @@ protected:
 	float start_x;
 	float start_y;
 
+
 	LPANIMATION_SET animation_set;
 
 public:
@@ -45,6 +46,7 @@ public:
 	int GetState() { return this->state; }
 
 	int tagType = 0;
+	int zIndex = 0;
 	bool isPushingUp = false;
 	bool isFallingDown = false;
 
@@ -87,4 +89,12 @@ public:
 	~CGameObject();
 
 	static bool IsDeleted(const LPGAMEOBJECT& o) { return o->isDeleted; }
+
+	void SetZIndex(int z) {
+		this->zIndex = z;
+	}
+
+	int GetZIndex() {
+		return this->zIndex;
+	}
 };

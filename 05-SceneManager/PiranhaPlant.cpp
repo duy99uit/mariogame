@@ -11,7 +11,7 @@ void PiranhaPlant::GetBoundingBox(float& left, float& top,
 
 PiranhaPlant::PiranhaPlant()
 {
-
+	SetState(PIRANHAPLANT_ANI_IDLE);
 }
 
 void PiranhaPlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
@@ -36,6 +36,7 @@ void PiranhaPlant::SetState(int _state)
 	switch (_state)
 	{
 	case PIRANHAPLANT_ANI_IDLE:
+		vy = vx = 0;
 		break;
 	}
 }

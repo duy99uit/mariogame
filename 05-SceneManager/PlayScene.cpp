@@ -214,6 +214,7 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			break;
 		case OBJECT_TYPE_PIRANHAPLANT:
 			obj = new PiranhaPlant();
+			obj->SetZIndex(-1);
 			DebugOut(L"[INFO] PiranhaPlant was create \n", obj);
 			break;
 		case OBJECT_TYPE_BRICK:
@@ -337,6 +338,12 @@ void CPlayScene::Render()
 {
 	player->Render();
 	current_map->DrawMap();
+
+	// sort object to render by Z
+	sort(this->objects.begin(), this->objects.end(), [](const CGameObject* lObj, const CGameObject* rObj) {
+		return lObj->zIndex < rObj->zIndex;
+	});
+
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
 }

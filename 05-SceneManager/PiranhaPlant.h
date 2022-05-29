@@ -17,5 +17,8 @@ public:
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void SetState(int state);
 
+	virtual int IsCollidable() { return 1; };
+	virtual int IsBlocking() { return 0; }
+
 	PiranhaPlant();
 };
