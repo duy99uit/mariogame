@@ -339,10 +339,10 @@ void CPlayScene::Render()
 	player->Render();
 	current_map->DrawMap();
 
-	// sort object to render by Z
-	sort(this->objects.begin(), this->objects.end(), [](const CGameObject* lObj, const CGameObject* rObj) {
+	// zIndex Render Front - Behind
+	/*sort(this->objects.begin(), this->objects.end(), [](const CGameObject* lObj, const CGameObject* rObj) {
 		return lObj->zIndex < rObj->zIndex;
-	});
+	});*/
 
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
