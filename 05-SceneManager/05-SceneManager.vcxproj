@@ -162,6 +162,7 @@
     <ClCompile Include="SampleKeyEventHandler.cpp" />
     <ClCompile Include="QuestionBrick.cpp" />
     <ClCompile Include="PiranhaPlant.cpp" />
+    <ClCompile Include="PiranhaPlantFire.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goomba.h" />
+    <ClInclude Include="PiranhaPlantFire.h" />
     <ClInclude Include="KeyEventHandler.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Mario.h" />

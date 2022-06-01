@@ -115,6 +115,9 @@
     <ClCompile Include="PiranhaPlant.cpp">
       <Filter>Map Objects\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="PiranhaPlantFire.cpp">
+      <Filter>Map Objects\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animations.h">
@@ -184,6 +187,9 @@
       <Filter>Map Objects\Items</Filter>
     </ClInclude>
     <ClInclude Include="PiranhaPlant.h">
+      <Filter>Map Objects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="PiranhaPlantFire.h">
       <Filter>Map Objects\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

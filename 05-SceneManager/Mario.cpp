@@ -90,7 +90,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	else if (dynamic_cast<PiranhaPlant*>(e->obj))
 	{
 		DebugOut(L"Mario PiranhaPlant !\n");
-		OnCollisionWithPiranhaPlant(e);
+		/*OnCollisionWithPiranhaPlant(e);*/
 	}
 		
 }

@@ -15,6 +15,7 @@
 
 #include "QuestionBrick.h"
 #include "PiranhaPlant.h"
+#include "PiranhaPlantFire.h"
 
 using namespace std;
 
@@ -215,7 +216,10 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 		case OBJECT_TYPE_PIRANHAPLANT:
 			obj = new PiranhaPlant();
 			obj->SetZIndex(-1);
-			DebugOut(L"[INFO] PiranhaPlant was create \n", obj);
+			break;
+		case OBJECT_TYPE_FIREPIRANHAPLANT:
+			obj = new PiranhaPlantFire(tag);
+			DebugOut(L"Running here\n");
 			break;
 		case OBJECT_TYPE_BRICK:
 			obj = new CBrick();

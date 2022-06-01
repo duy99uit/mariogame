@@ -6,6 +6,8 @@
 
 #define PIRANHAPLANT_ANI_IDLE	0
 
+// x, y old value is 358	348
+
 class PiranhaPlant :
 	public CGameObject
 {
