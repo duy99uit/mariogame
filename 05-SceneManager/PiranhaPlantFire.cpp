@@ -1,4 +1,5 @@
 #include "PiranhaPlantFire.h"
+#include "PlayScene.h"
 
 PiranhaPlantFire::PiranhaPlantFire(int tag) {
 	this->tagType = tag;
@@ -15,6 +16,14 @@ void PiranhaPlantFire::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {
 
 	CGameObject::Update(dt);
 	y += vy * dt;
+
+	CMario* mario = ((CPlayScene*)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	/*DebugOut(L"Mario %d\n", mario);*/
+	float marioLeft, marioTop, marioRight, marioBottom;
+	mario->GetBoundingBox(marioLeft, marioTop, marioRight, marioBottom);
+	DebugOut(L"Mario left %d\n", marioLeft, marioTop, marioRight, marioBottom);
+	int marioLevel = mario->GetLevel();
+	DebugOut(L"Mario level %d\n", marioLevel);
 
 }
 
