@@ -16,6 +16,7 @@
 #include "QuestionBrick.h"
 #include "PiranhaPlant.h"
 #include "PiranhaPlantFire.h"
+#include "Koopas.h"
 
 using namespace std;
 
@@ -211,15 +212,17 @@ void CPlayScene::LoadObjects(LPCWSTR assetFile)
 			//DebugOut(L"[INFO] Goomba object created!\n", obj);
 			break;
 		case OBJECT_TYPE_KOOPAS:
-			obj = new CBrick();
+			obj = new CKoopas(tag);
+			obj->SetTagType(tag);
 			break;
 		case OBJECT_TYPE_PIRANHAPLANT:
 			obj = new PiranhaPlant();
-			obj->SetZIndex(-1);
+			/*obj->SetZIndex(-1);*/
 			break;
 		case OBJECT_TYPE_FIREPIRANHAPLANT:
 			obj = new PiranhaPlantFire(tag);
 			DebugOut(L"Running here\n");
+			obj->SetZIndex(-1);
 			break;
 		case OBJECT_TYPE_BRICK:
 			obj = new CBrick();
@@ -344,9 +347,9 @@ void CPlayScene::Render()
 	current_map->DrawMap();
 
 	// zIndex Render Front - Behind
-	/*sort(this->objects.begin(), this->objects.end(), [](const CGameObject* lObj, const CGameObject* rObj) {
+	sort(this->objects.begin(), this->objects.end(), [](const CGameObject* lObj, const CGameObject* rObj) {
 		return lObj->zIndex < rObj->zIndex;
-	});*/
+	});
 
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();

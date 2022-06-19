@@ -7,12 +7,15 @@
 #define PIRANHAPLANTFIRE_SPEED	0.02f
 
 
+
 class PiranhaPlantFire :
 	public PiranhaPlant
 {
+	float limitY = 0;
 
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
+
 public:
 
 	PiranhaPlantFire(int tag);
@@ -21,4 +24,8 @@ public:
 
 	virtual int IsCollidable() { return 1; };
 	virtual int IsBlocking() { return 0; };
+	void SetLimitY(float ly)
+	{
+		limitY = ly - PIRANHAPLANTFIRE_BBOX_HEIGHT;
+	}
 };
